@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    // 目标代码 : 默认兼容 ES6+
+    "target": "esnext",
+    // 模块化: 默认 -> Cjs ES module -> AMD -> CMD
+    "module": "esnext",
+    // 是否启用严格模式
+    "strict": true,
+    // 对jsx进行怎么样的处理 H函数等等 preserve保留
+    "jsx": "preserve",
+    // 辅助导入功能
+    "importHelpers": true,
+    // 按照node的方式去解析模块 import "/index.node"
+    "moduleResolution": "node",
+    // 跳过一些库的类型检测
+    "skipLibCheck": true,
+    // ES moudle + Cjs 是否混合使用
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    // 要不要生成映射文件(ts -> js)
+    "sourceMap": true,
+    // 文件路径在解析时, 基本url .表示当前文件
+    "baseUrl": ".",
+    // 指定具体要解析使用的类型
+    "types": ["webpack-env"],
+    // 编译阶段路径解析(类似于webpack alias)
+    "paths": {
+      "@/*": ["src/*"],
+      "components/*": ["src/components/*"]
+    },
+    // 可以指定在项目中可以使用哪里库的类型(Proxy/Window/Document)
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ],
+  //排排
+  "exclude": ["node_modules"]
+}

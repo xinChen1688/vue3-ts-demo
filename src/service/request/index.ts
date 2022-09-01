@@ -56,7 +56,7 @@ class HYRequest {
         // loading 移除
         this.loading?.close()
         console.log('响应所有实列成功~')
-        return res
+        return res.data
       },
       (err) => {
         // loading 移除
@@ -83,7 +83,6 @@ class HYRequest {
           if (config.interceptors?.responseInterceptor) {
             res = config.interceptors.responseInterceptor(res)
           }
-          console.log(res)
           // loading默认开启
           this.showLoading = DEAFULT_Loaing
 

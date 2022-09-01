@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { globalRegister } from './global'
+import { setupStore } from './store'
 
 import 'normalize.css'
 import './assets/css/index.less'
@@ -18,7 +19,8 @@ const app = createApp(App)
 app.use(globalRegister)
 app.use(router)
 app.use(store)
-
+// 用户刷新时通过本地存储获取vuex数据
+setupStore()
 app.mount('#app')
 // console.log(process.env.VUE_APP_BASE_URL)
 

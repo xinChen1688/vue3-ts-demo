@@ -2,8 +2,8 @@
   <div class="login-panel">
     <h1 class="title">后台管理系统</h1>
     <!-- 登陆卡片 -->
-    <el-tabs type="border-card" stretch>
-      <el-tab-pane>
+    <el-tabs type="border-card" stretch v-model="currentTab">
+      <el-tab-pane name="account">
         <template #label>
           <span class="custom-tabs-label">
             <span><i class="el-icon-user-solid"></i> 账号登陆</span>
@@ -12,13 +12,13 @@
         <loginAccount ref="accountRef" />
       </el-tab-pane>
 
-      <el-tab-pane>
+      <el-tab-pane name="phone">
         <template #label>
           <span class="custom-tabs-label">
             <span><i class="el-icon-mobile-phone"></i>手机登陆</span>
           </span>
         </template>
-        <loginPhone />
+        <loginPhone ref="phoneRef" />
       </el-tab-pane>
     </el-tabs>
     <!-- 记住密码 -->
@@ -44,15 +44,24 @@ export default defineComponent({
     loginPhone
   },
   setup() {
+    // 定义属性
     const iskeepPassword = ref(false)
+    // 账号组件ref
     const accountRef = ref<InstanceType<typeof loginAccount>>()
+    //手机组件ref
+    const phoneRef = ref<InstanceType<typeof loginPhone>>()
+    const currentTab = ref<string>('account')
 
+    // 点击登陆按钮时触发
     const hanleLoginClick = () => {
-      console.log('立即登陆')
-      accountRef.value?.loginAction()
+      if (currentTab.value === 'account') {
+        accountRef.value?.loginAction(iskeepPassword.value)
+      } else {
+        phoneRef.value?.loginAction()
+      }
     }
 
-    return { iskeepPassword, hanleLoginClick, accountRef }
+    return { iskeepPassword, hanleLoginClick, accountRef, currentTab, phoneRef }
   }
 })
 </script>

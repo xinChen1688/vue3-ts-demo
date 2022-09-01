@@ -1,7 +1,6 @@
 <template>
   <div class="app">
     <router-view></router-view>
-    <el-button>哈哈哈</el-button>
   </div>
 </template>
 

@@ -2,6 +2,8 @@ import { Module } from 'vuex'
 import { ILoginState } from './type'
 import { IRootState } from '../type'
 import router from '@/router'
+
+import { mapmenusToRoutes } from '@/utils/map-menus'
 import {
   accountLoginRequest,
   requestUserInfoById,
@@ -32,6 +34,10 @@ const loginModule: Module<ILoginState, IRootState> = {
     // 用户信息菜单列表
     changeUserMenus(state, userMenu: any) {
       state.userMenu = userMenu
+      const routes = mapmenusToRoutes(userMenu)
+      routes.forEach((route) => {
+        router.addRoute('main', route)
+      })
     }
   },
   actions: {
@@ -71,10 +77,6 @@ const loginModule: Module<ILoginState, IRootState> = {
         router.push('/login')
       }
     }
-    // 手机登陆时 verification code
-    // phoneLoginAction({ commit }, payload: IAccount) {
-    //   console.log('执行了phoneLoginAction', payload)
-    // }
   }
 }
 

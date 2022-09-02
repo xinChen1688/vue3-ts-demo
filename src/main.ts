@@ -17,10 +17,10 @@ const app = createApp(App)
 
 // 注册element-plus/其他
 app.use(globalRegister)
-app.use(router)
 app.use(store)
 // 用户刷新时通过本地存储获取vuex数据
 setupStore()
+app.use(router)
 app.mount('#app')
 // console.log(process.env.VUE_APP_BASE_URL)
 

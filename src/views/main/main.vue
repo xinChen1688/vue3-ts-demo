@@ -1,15 +1,21 @@
 <template>
   <div class="main">
     <el-container class="main-content">
+      <!-- menu菜单 -->
       <el-aside :width="isCollapse ? '60px' : '210px'">
         <nav-menu :collapse="isCollapse"></nav-menu>
       </el-aside>
-
+      <!-- nav导航区 -->
       <el-container class="page">
         <el-header class="page-header">
           <nav-header @foldchange="handleFoldchange"></nav-header>
         </el-header>
-        <el-main class="page-content">Main</el-main>
+        <!-- main内容区 -->
+        <el-main class="page-content">
+          <div class="page-info">
+            <router-view></router-view>
+          </div>
+        </el-main>
       </el-container>
     </el-container>
   </div>

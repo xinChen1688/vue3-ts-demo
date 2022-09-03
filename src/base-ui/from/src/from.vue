@@ -1,5 +1,8 @@
 <template>
   <div class="hy-from">
+    <div class="header">
+      <slot name="header"></slot>
+    </div>
     <el-form :label-width="labeWidth">
       <el-row>
         <template v-for="item in fromItems" :key="item.lable">
@@ -17,6 +20,7 @@
                   :placeholder="item.placeholder"
                   :show-password="item.type === 'password'"
                   v-bind="item.otherOptions"
+                  v-model="fromData[`${item.field}`]"
                 />
               </template>
               <!-- 多选 -->
@@ -25,6 +29,7 @@
                   :placeholder="item.placeholder"
                   v-bind="item.otherOptions"
                   style="width: 100%"
+                  v-model="fromData[`${item.field}`]"
                 >
                   <el-option
                     v-for="option in item.options"
@@ -39,6 +44,7 @@
                 <el-date-picker
                   v-bind="item.otherOptions"
                   style="width: 100%"
+                  v-model="fromData[`${item.field}`]"
                 ></el-date-picker>
               </template>
             </el-form-item>
@@ -46,14 +52,21 @@
         </template>
       </el-row>
     </el-form>
+    <div class="footer">
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, PropType, ref, watch } from 'vue'
 import { IFromItem } from '../type'
 export default defineComponent({
   props: {
+    // 参数
+    moduleValue: {
+      type: Object
+    },
     // 表单列表
     fromItems: {
       type: Array as PropType<IFromItem[]>,
@@ -85,6 +98,13 @@ export default defineComponent({
         xs: 24
       })
     }
+  },
+  setup(props, { emit }) {
+    const fromData = ref({ ...props.moduleValue })
+    watch(fromData, (newValue) => emit('update:modelValue', newValue), {
+      deep: true
+    })
+    return { fromData }
   }
 })
 </script>

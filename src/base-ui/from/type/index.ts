@@ -1,5 +1,6 @@
 type IFromType = 'input' | 'password' | 'select' | 'detepicker'
 export interface IFromItem {
+  field: string
   type: IFromType
   label: string
   rules?: any[]
@@ -13,6 +14,6 @@ export interface IFromItem {
 export interface IFrom {
   fromItems: IFromItem[]
   labeWidth?: string
-  itemStyle: any
-  colLayout: any
+  itemStyle?: any
+  colLayout?: any
 }

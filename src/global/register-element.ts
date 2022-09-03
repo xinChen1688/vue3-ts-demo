@@ -3,6 +3,8 @@ import 'element-plus/lib/theme-chalk/base.css'
 import {
   ElAside,
   ElAvatar,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
   ElButton,
   ElCheckbox,
   ElCol,
@@ -21,10 +23,13 @@ import {
   ElMenuItem,
   ElMenuItemGroup,
   ElOption,
+  ElPagination,
   ElRadio,
   ElRow,
   ElSelect,
   ElSubmenu,
+  ElTable,
+  ElTableColumn,
   ElTabPane,
   ElTabs
 } from 'element-plus'
@@ -55,7 +60,12 @@ const components = [
   ElCol,
   ElSelect,
   ElOption,
-  ElDatePicker
+  ElDatePicker,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn,
+  ElPagination
 ]
 
 export default function (app: App): void {
